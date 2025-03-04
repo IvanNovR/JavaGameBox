@@ -1,9 +1,7 @@
 package ru.ivannovr.gui.menu;
 
 import ru.ivannovr.gui.BasePanel;
-import ru.ivannovr.gui.gamepanels.FlappyBirdPanel;
-import ru.ivannovr.gui.gamepanels.PacmanPanel;
-import ru.ivannovr.gui.gamepanels.SnakePanel;
+import ru.ivannovr.gui.gamepanels.*;
 import ru.ivannovr.utils.DatabaseManager;
 
 import javax.swing.*;
@@ -28,7 +26,7 @@ public class MainPanel extends BasePanel {
         titleLabel.setBounds(0, 50, 600, 50);
         add(titleLabel);
 
-        String[] games = {"Snake", "FlappyBird", "Pacman"};
+        String[] games = {"Snake", "FlappyBird", "Pacman", "Minesweeper"};
         gameSelector = new JComboBox<>(games);
         gameSelector.setBounds(150, 200, 300, 40);
         gameSelector.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -71,6 +69,7 @@ public class MainPanel extends BasePanel {
             case "Snake" -> new SnakePanel(parentFrame, username, dbManager);
             case "FlappyBird" -> new FlappyBirdPanel(parentFrame, username, dbManager);
             case "Pacman" -> new PacmanPanel(parentFrame, username, dbManager);
+            case "Minesweeper" -> new MinesweeperPanel(parentFrame, username, dbManager);
             default -> null;
         };
         if (gamePanel != null) {

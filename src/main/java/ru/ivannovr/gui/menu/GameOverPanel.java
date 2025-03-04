@@ -1,10 +1,7 @@
 package ru.ivannovr.gui.menu;
 
 import ru.ivannovr.gui.BasePanel;
-import ru.ivannovr.gui.gamepanels.AbstractGamePanel;
-import ru.ivannovr.gui.gamepanels.FlappyBirdPanel;
-import ru.ivannovr.gui.gamepanels.PacmanPanel;
-import ru.ivannovr.gui.gamepanels.SnakePanel;
+import ru.ivannovr.gui.gamepanels.*;
 import ru.ivannovr.utils.DatabaseManager;
 
 import javax.swing.*;
@@ -63,6 +60,7 @@ public class GameOverPanel extends BasePanel {
             case "Snake" -> new SnakePanel(parentFrame, username, dbManager);
             case "FlappyBird" -> new FlappyBirdPanel(parentFrame, username, dbManager);
             case "Pacman" -> new PacmanPanel(parentFrame, username, dbManager);
+            case "Minesweeper" -> new MinesweeperPanel(parentFrame, username, dbManager);
             default -> null;
         };
         if (newGamePanel != null) {
