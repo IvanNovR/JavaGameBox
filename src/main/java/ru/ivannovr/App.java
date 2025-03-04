@@ -4,6 +4,8 @@ import ru.ivannovr.gui.menu.LoginPanel;
 import ru.ivannovr.utils.DatabaseManager;
 
 import javax.swing.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.jar.Manifest;
 import java.io.IOException;
@@ -67,11 +69,12 @@ public class App {
         if (classJar.startsWith("jar:")) {
             try {
                 String manifestPath = classJar.substring(0, classJar.lastIndexOf("!") + 1) + "/META-INF/MANIFEST.MF";
-                URL manifestURL = new URL(manifestPath);
+                URI uri = new URI(manifestPath);
+                URL manifestURL = uri.toURL();
                 Manifest manifest = new Manifest(manifestURL.openStream());
                 String title = manifest.getMainAttributes().getValue("Implementation-Title");
                 return title != null ? title : "JavaGameBox";
-            } catch (IOException e) {
+            } catch (IOException | URISyntaxException e) {
                 logger.error("Failed to read manifest for JAR name", e);
             }
         }
@@ -87,10 +90,11 @@ public class App {
         if (classJar.startsWith("jar:")) {
             try {
                 String manifestPath = classJar.substring(0, classJar.lastIndexOf("!") + 1) + "/META-INF/MANIFEST.MF";
-                URL manifestURL = new URL(manifestPath);
+                URI uri = new URI(manifestPath);
+                URL manifestURL = uri.toURL();
                 Manifest manifest = new Manifest(manifestURL.openStream());
                 return manifest.getMainAttributes().getValue("Implementation-Version");
-            } catch (IOException e) {
+            } catch (IOException | URISyntaxException e) {
                 logger.error("Failed to read manifest for JAR version", e);
             }
         }
