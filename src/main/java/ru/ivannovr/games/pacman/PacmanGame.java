@@ -8,7 +8,6 @@ import ru.ivannovr.games.pacman.entities.ghosts.*;
 import ru.ivannovr.utils.DatabaseManager;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class PacmanGame extends AbstractGame {
