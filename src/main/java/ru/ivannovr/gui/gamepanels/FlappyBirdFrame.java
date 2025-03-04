@@ -38,7 +38,7 @@ public class FlappyBirdFrame extends AbstractGamePanel {
         int groundHeight = 100;
         g2.fillRect(0, WINDOW_SIZE - groundHeight, WINDOW_SIZE, groundHeight);
 
-        List<Object> renderData = ((FlappyBirdGame) game).getRenderData();
+        List<Object> renderData = game.getRenderData();
         Bird bird = (Bird) renderData.get(0);
 
         g2.setColor(new Color(99, 155, 67));

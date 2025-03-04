@@ -36,7 +36,7 @@ public class SnakeFrame extends AbstractGamePanel {
             }
         }
 
-        java.util.List<Object> renderData = ((SnakeGame) game).getRenderData();
+        java.util.List<Object> renderData = game.getRenderData();
         LinkedList<Point> snakeBody = (LinkedList<Point>) renderData.get(0);
 
         for (int i = 0; i < snakeBody.size(); i++) {

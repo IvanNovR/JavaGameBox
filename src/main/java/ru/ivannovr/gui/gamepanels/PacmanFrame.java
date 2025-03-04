@@ -36,7 +36,7 @@ public class PacmanFrame extends AbstractGamePanel {
         g2.setPaint(new GradientPaint(0, 0, new Color(20, 20, 40), WINDOW_SIZE, WINDOW_SIZE, new Color(40, 40, 80)));
         g2.fillRect(0, 0, WINDOW_SIZE, WINDOW_SIZE);
 
-        List<Object> renderData = ((PacmanGame) game).getRenderData();
+        List<Object> renderData = game.getRenderData();
         Pacman pacman = (Pacman) renderData.get(0);
         List<Ghost> ghosts = new ArrayList<>();
         for (int i = 1; i < renderData.size() - 1; i++) {
