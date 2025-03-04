@@ -1,4 +1,15 @@
+<p align="center">
+  <picture>
+    <img alt="Java Game Box icon" src="./src/main/resources/icon.png" width=25% height=25%>
+  </picture>
+</p>
+<h1 align="center">Java Game Box</h1>
+
 # JavaGameBox
+[![Realeases](https://img.shields.io/github/v/release/IvanNovR/JavaGameBox.svg)](https://github.com/IvanNovR/JavaGameBox/releases)
+[![Status](https://img.shields.io/github/actions/workflow/status/IvanNovR/JavaGameBox/maven.yml.svg)](#)
+[![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Russian Readme](https://img.shields.io/badge/russian-readme-blue)](/README_RU.md)
 
 JavaGameBox is a simple game platform that allows users to play classic games. It includes features like user authentication, score tracking, and a leaderboard system.
 
@@ -18,7 +29,9 @@ To build the project, you need to have Maven installed. You can download Maven f
 
 Once Maven is installed, navigate to the project root directory and run:
 
-```mvn clean package```
+```bash
+mvn clean package
+```
 
 This command compiles the code, runs tests, and packages the application into a JAR file located in the `target` directory.
 
@@ -34,7 +47,9 @@ Before launching the application, set up the database:
 
 Run the application with the following command:
 
-```java -jar target/JavaGameBox-1.0.jar --db-url=<database_url> --db-user=<database_user> --db-password=<database_password>```
+```bash
+java -jar target/JavaGameBox-1.0.0.jar --db-url=<database_url> --db-user=<database_user> --db-password=<database_password>
+```
 
 Replace `<database_url>`, `<database_user>`, and `<database_password>` with your actual PostgreSQL connection details.
 
