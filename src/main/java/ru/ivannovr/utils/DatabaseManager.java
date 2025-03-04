@@ -1,11 +1,14 @@
 package ru.ivannovr.utils;
 
 import org.jetbrains.annotations.Nullable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.*;
 
 public class DatabaseManager {
+    private static final Logger logger = LogManager.getLogger(DatabaseManager.class);
     private final String url;
     private final String user;
     private final String password;
@@ -18,6 +21,7 @@ public class DatabaseManager {
     }
 
     private Connection getConnection() throws SQLException {
+        logger.debug("Connecting to database: {}", url);
         return DriverManager.getConnection(url, user, password);
     }
 
@@ -43,8 +47,9 @@ public class DatabaseManager {
              Statement stmt = conn.createStatement()) {
             stmt.execute(createUsersTableSQL);
             stmt.execute(createLeaderboardTableSQL);
+            logger.info("Database initialized successfully");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Failed to initialize database", e);
         }
     }
 
@@ -59,11 +64,13 @@ public class DatabaseManager {
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
                 initializeLeaderboard(username);
+                logger.info("User registered: {}", username);
                 return true;
             }
+            logger.warn("User registration failed (username may already exist): {}", username);
             return false;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error registering user: {}", username, e);
             return false;
         }
     }
@@ -72,7 +79,7 @@ public class DatabaseManager {
         String query = """
             INSERT INTO leaderboard (username, game, score, record_time) VALUES (?, ?, 0, NULL)
         """;
-        String[] games = {"Snake", "Dinosaur", "Pacman"};
+        String[] games = {"Snake", "FlappyBird", "Pacman"};
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             for (String game : games) {
@@ -80,8 +87,9 @@ public class DatabaseManager {
                 pstmt.setString(2, game);
                 pstmt.executeUpdate();
             }
+            logger.info("Leaderboard initialized for user: {}", username);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error initializing leaderboard for user: {}", username, e);
         }
     }
 
@@ -94,11 +102,14 @@ public class DatabaseManager {
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return rs.getString("password").equals(password);
+                boolean authenticated = rs.getString("password").equals(password);
+                logger.info("Authentication attempt for {}: {}", username, authenticated ? "success" : "failed");
+                return authenticated;
             }
+            logger.warn("User not found: {}", username);
             return false;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error authenticating user: {}", username, e);
             return false;
         }
     }
@@ -116,9 +127,10 @@ public class DatabaseManager {
             while (rs.next()) {
                 result.add(parseLeaderBoard(rs));
             }
+            logger.debug("Leaderboard retrieved for game: {}", game);
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error retrieving leaderboard for game: {}", game, e);
             return null;
         }
     }
@@ -133,10 +145,15 @@ public class DatabaseManager {
             pstmt.setString(2, game);
             ResultSet rs = pstmt.executeQuery();
 
-            if (rs.next()) return parseLeaderBoard(rs);
+            if (rs.next()) {
+                Map<String, Object> result = parseLeaderBoard(rs);
+                logger.debug("User leaderboard retrieved for {} in game {}", username, game);
+                return result;
+            }
+            logger.warn("No leaderboard entry found for {} in game {}", username, game);
             return null;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error retrieving user leaderboard for {} in game {}", username, game, e);
             return null;
         }
     }
@@ -165,8 +182,9 @@ public class DatabaseManager {
             pstmt.setString(2, game);
             pstmt.setInt(3, score);
             pstmt.executeUpdate();
+            logger.info("Score updated for {} in game {}: {}", username, game, score);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error updating score for {} in game {}: {}", username, game, score, e);
         }
     }
 }

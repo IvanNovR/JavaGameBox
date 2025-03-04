@@ -7,8 +7,12 @@ import javax.swing.*;
 import java.net.URL;
 import java.util.jar.Manifest;
 import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class App {
+    private static final Logger logger = LogManager.getLogger(App.class);
+
     public static void main(String[] args) {
         String dbUrl = null;
         String dbUser = null;
@@ -27,9 +31,8 @@ public class App {
         if (dbUrl == null || dbUser == null || dbPassword == null) {
             String jarName = getJarName();
             String jarVersion = getJarVersion();
-            System.err.println("Missing required arguments. Usage: java -jar " +
-                    jarName + (jarVersion != null ? "-" + jarVersion : "") + ".jar " +
-                    "--db-url=<url> --db-user=<user> --db-password=<password>");
+            logger.error("Missing required arguments. Usage: java -jar {}{}.jar --db-url=<url> --db-user=<user> --db-password=<password>",
+                    jarName, jarVersion != null ? "-" + jarVersion : "");
             System.exit(1);
         }
 
@@ -47,7 +50,7 @@ public class App {
                 ImageIcon icon = new ImageIcon(iconURL);
                 frame.setIconImage(icon.getImage());
             } else {
-                System.err.println("Icon resource not found: /icon.png");
+                logger.warn("Icon resource not found: /icon.png");
             }
 
             frame.setContentPane(new LoginPanel(frame, dbManager));
@@ -69,7 +72,7 @@ public class App {
                 String title = manifest.getMainAttributes().getValue("Implementation-Title");
                 return title != null ? title : "JavaGameBox";
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Failed to read manifest for JAR name", e);
             }
         }
         return "JavaGameBox";
@@ -88,7 +91,7 @@ public class App {
                 Manifest manifest = new Manifest(manifestURL.openStream());
                 return manifest.getMainAttributes().getValue("Implementation-Version");
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Failed to read manifest for JAR version", e);
             }
         }
         return null;
