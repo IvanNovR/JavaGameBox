@@ -10,13 +10,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
-public class SnakeFrame extends AbstractGamePanel {
+public class SnakePanel extends AbstractGamePanel {
     private static final int CELL_SIZE = 30;
     private static final int GRID_SIZE = 20;
     private static final int WINDOW_SIZE = CELL_SIZE * GRID_SIZE;
     private static final int SNAKE_DELAY = 150;
 
-    public SnakeFrame(JFrame parentFrame, String username, DatabaseManager dbManager) {
+    public SnakePanel(JFrame parentFrame, String username, DatabaseManager dbManager) {
         super(parentFrame, username, dbManager, new SnakeGame(username, dbManager), SNAKE_DELAY);
         setPreferredSize(new Dimension(WINDOW_SIZE, WINDOW_SIZE));
     }

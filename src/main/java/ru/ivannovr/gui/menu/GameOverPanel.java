@@ -2,9 +2,9 @@ package ru.ivannovr.gui.menu;
 
 import ru.ivannovr.gui.BasePanel;
 import ru.ivannovr.gui.gamepanels.AbstractGamePanel;
-import ru.ivannovr.gui.gamepanels.FlappyBirdFrame;
-import ru.ivannovr.gui.gamepanels.PacmanFrame;
-import ru.ivannovr.gui.gamepanels.SnakeFrame;
+import ru.ivannovr.gui.gamepanels.FlappyBirdPanel;
+import ru.ivannovr.gui.gamepanels.PacmanPanel;
+import ru.ivannovr.gui.gamepanels.SnakePanel;
 import ru.ivannovr.utils.DatabaseManager;
 
 import javax.swing.*;
@@ -43,7 +43,7 @@ public class GameOverPanel extends BasePanel {
         playAgainButton.setBounds(200, 250, 200, 60);
         add(playAgainButton);
 
-        JButton menuButton = createStyledButton("Back to Menu", new Color(100, 150, 255), e -> switchPanel(new MainMenu(parentFrame, username, dbManager)));
+        JButton menuButton = createStyledButton("Back to Menu", new Color(100, 150, 255), e -> switchPanel(new MainPanel(parentFrame, username, dbManager)));
         menuButton.setBounds(200, 330, 200, 60);
         add(menuButton);
     }
@@ -60,9 +60,9 @@ public class GameOverPanel extends BasePanel {
 
     private void playAgain() {
         AbstractGamePanel newGamePanel = switch (gameName) {
-            case "Snake" -> new SnakeFrame(parentFrame, username, dbManager);
-            case "FlappyBird" -> new FlappyBirdFrame(parentFrame, username, dbManager);
-            case "Pacman" -> new PacmanFrame(parentFrame, username, dbManager);
+            case "Snake" -> new SnakePanel(parentFrame, username, dbManager);
+            case "FlappyBird" -> new FlappyBirdPanel(parentFrame, username, dbManager);
+            case "Pacman" -> new PacmanPanel(parentFrame, username, dbManager);
             default -> null;
         };
         if (newGamePanel != null) {

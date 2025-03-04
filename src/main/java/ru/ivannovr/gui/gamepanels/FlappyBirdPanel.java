@@ -10,12 +10,12 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
-public class FlappyBirdFrame extends AbstractGamePanel {
+public class FlappyBirdPanel extends AbstractGamePanel {
     private static final int WINDOW_SIZE = 600;
     private static final int FLAPPY_DELAY = 20;
     private int cloudOffset = 0;
 
-    public FlappyBirdFrame(JFrame parentFrame, String username, DatabaseManager dbManager) {
+    public FlappyBirdPanel(JFrame parentFrame, String username, DatabaseManager dbManager) {
         super(parentFrame, username, dbManager, new FlappyBirdGame(username, dbManager), FLAPPY_DELAY);
         setPreferredSize(new Dimension(WINDOW_SIZE, WINDOW_SIZE));
     }

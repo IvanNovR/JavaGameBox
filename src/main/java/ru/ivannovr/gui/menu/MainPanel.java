@@ -1,20 +1,20 @@
 package ru.ivannovr.gui.menu;
 
 import ru.ivannovr.gui.BasePanel;
-import ru.ivannovr.gui.gamepanels.FlappyBirdFrame;
-import ru.ivannovr.gui.gamepanels.PacmanFrame;
-import ru.ivannovr.gui.gamepanels.SnakeFrame;
+import ru.ivannovr.gui.gamepanels.FlappyBirdPanel;
+import ru.ivannovr.gui.gamepanels.PacmanPanel;
+import ru.ivannovr.gui.gamepanels.SnakePanel;
 import ru.ivannovr.utils.DatabaseManager;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class MainMenu extends BasePanel {
+public class MainPanel extends BasePanel {
     private final String username;
     private JComboBox<String> gameSelector;
 
-    public MainMenu(JFrame parentFrame, String username, DatabaseManager dbManager) {
+    public MainPanel(JFrame parentFrame, String username, DatabaseManager dbManager) {
         super(parentFrame, dbManager);
         this.username = username;
         initializeComponents();
@@ -68,9 +68,9 @@ public class MainMenu extends BasePanel {
         String selectedGame = (String) gameSelector.getSelectedItem();
         if (selectedGame == null) return;
         JPanel gamePanel = switch (selectedGame) {
-            case "Snake" -> new SnakeFrame(parentFrame, username, dbManager);
-            case "FlappyBird" -> new FlappyBirdFrame(parentFrame, username, dbManager);
-            case "Pacman" -> new PacmanFrame(parentFrame, username, dbManager);
+            case "Snake" -> new SnakePanel(parentFrame, username, dbManager);
+            case "FlappyBird" -> new FlappyBirdPanel(parentFrame, username, dbManager);
+            case "Pacman" -> new PacmanPanel(parentFrame, username, dbManager);
             default -> null;
         };
         if (gamePanel != null) {

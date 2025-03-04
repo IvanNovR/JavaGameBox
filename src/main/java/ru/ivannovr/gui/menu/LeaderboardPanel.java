@@ -73,7 +73,7 @@ public class LeaderboardPanel extends BasePanel {
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         add(scrollPane);
 
-        JButton backButton = createStyledButton("Back to Menu", new Color(255, 100, 100), e -> switchPanel(new MainMenu(parentFrame, username, dbManager)));
+        JButton backButton = createStyledButton("Back to Menu", new Color(255, 100, 100), e -> switchPanel(new MainPanel(parentFrame, username, dbManager)));
         backButton.setBounds(150, 480, 300, 50);
         add(backButton);
     }

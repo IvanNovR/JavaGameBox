@@ -73,7 +73,7 @@ public class LoginPanel extends BasePanel {
             return;
         }
         if (dbManager.authenticateUser(username, password)) {
-            switchPanel(new MainMenu(parentFrame, username, dbManager));
+            switchPanel(new MainPanel(parentFrame, username, dbManager));
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password!");
         }

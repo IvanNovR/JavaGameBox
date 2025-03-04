@@ -16,14 +16,14 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PacmanFrame extends AbstractGamePanel {
+public class PacmanPanel extends AbstractGamePanel {
     private static final int CELL_SIZE = 30;
     private static final int GRID_SIZE = 20;
     private static final int WINDOW_SIZE = CELL_SIZE * GRID_SIZE;
     private static final int PACMAN_DELAY = 150;
     private int animationFrame = 0;
 
-    public PacmanFrame(JFrame parentFrame, String username, DatabaseManager dbManager) {
+    public PacmanPanel(JFrame parentFrame, String username, DatabaseManager dbManager) {
         super(parentFrame, username, dbManager, new PacmanGame(username, dbManager), PACMAN_DELAY);
         setPreferredSize(new Dimension(WINDOW_SIZE, WINDOW_SIZE));
     }
