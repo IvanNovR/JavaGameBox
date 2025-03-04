@@ -5,7 +5,7 @@
 </p>
 <h1 align="center">Java Game Box</h1>
 
-[![Realeases](https://img.shields.io/github/v/release/IvanNovR/JavaGameBox.svg)](https://github.com/IvanNovR/JavaGameBox/releases)
+[![Releases](https://img.shields.io/github/v/release/IvanNovR/JavaGameBox.svg)](https://github.com/IvanNovR/JavaGameBox/releases)
 [![Status](https://img.shields.io/github/actions/workflow/status/IvanNovR/JavaGameBox/maven.yml.svg)](#)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Russian Readme](https://img.shields.io/badge/russian-readme-blue)](/README_RU.md)
