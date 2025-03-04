@@ -50,7 +50,7 @@ public class FlappyBirdGame extends AbstractGame {
 
         lastPipeSpawnTime = (lastPipeSpawnTime + 1) % PIPE_SPAWN_INTERVAL;
         if (lastPipeSpawnTime == 0) {
-            spawnPipe();;
+            spawnPipe();
         }
     }
 
