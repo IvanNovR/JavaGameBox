@@ -33,7 +33,7 @@ public class LeaderboardPanel extends BasePanel {
         title.setBounds(0, 30, 600, 40);
         add(title);
 
-        String[] games = {"Snake", "FlappyBird", "Pacman"};
+        String[] games = {"Snake", "FlappyBird", "Pacman", "Minesweeper"};
         gameSelector = new JComboBox<>(games);
         gameSelector.setBounds(150, 100, 300, 40);
         gameSelector.setFont(new Font("Arial", Font.PLAIN, 16));
