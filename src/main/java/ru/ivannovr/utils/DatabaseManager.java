@@ -63,7 +63,6 @@ public class DatabaseManager {
             pstmt.setString(2, password);
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
-                initializeLeaderboard(username);
                 logger.info("User registered: {}", username);
                 return true;
             }
@@ -72,24 +71,6 @@ public class DatabaseManager {
         } catch (SQLException e) {
             logger.error("Error registering user: {}", username, e);
             return false;
-        }
-    }
-
-    private void initializeLeaderboard(String username) {
-        String query = """
-            INSERT INTO leaderboard (username, game, score, record_time) VALUES (?, ?, 0, NULL)
-        """;
-        String[] games = {"Snake", "FlappyBird", "Pacman"};
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            for (String game : games) {
-                pstmt.setString(1, username);
-                pstmt.setString(2, game);
-                pstmt.executeUpdate();
-            }
-            logger.info("Leaderboard initialized for user: {}", username);
-        } catch (SQLException e) {
-            logger.error("Error initializing leaderboard for user: {}", username, e);
         }
     }
 
