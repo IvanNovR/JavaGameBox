@@ -90,6 +90,7 @@ public class PausePanel extends BasePanel {
     }
 
     private void endGame() {
+        resumeGame();
         gamePanel.getGame().endGame();
     }
 }
