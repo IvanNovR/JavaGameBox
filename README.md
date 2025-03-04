@@ -47,7 +47,7 @@ Before launching the application, set up the database:
 Run the application with the following command:
 
 ```bash
-java -jar target/JavaGameBox-1.1.0.jar --db-url=<database_url> --db-user=<database_user> --db-password=<database_password>
+java -jar target/JavaGameBox-1.1.1.jar --db-url=<database_url> --db-user=<database_user> --db-password=<database_password>
 ```
 
 Replace `<database_url>`, `<database_user>`, and `<database_password>` with your actual PostgreSQL connection details.

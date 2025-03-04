@@ -47,7 +47,7 @@ mvn clean package
 Запустите приложение с помощью команды:
 
 ```bash
-java -jar target/JavaGameBox-1.1.0.jar --db-url=<database_url> --db-user=<database_user> --db-password=<database_password>
+java -jar target/JavaGameBox-1.1.1.jar --db-url=<database_url> --db-user=<database_user> --db-password=<database_password>
 ```
 
 Замените `<database_url>`, `<database_user>` и `<database_password>` на ваши реальные данные для подключения к PostgreSQL.
